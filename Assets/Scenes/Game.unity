@@ -132,7 +132,8 @@ GameObject:
   m_Component:
   - component: {fileID: 101730820}
   - component: {fileID: 101730821}
-  m_Layer: 0
+  - component: {fileID: 101730822}
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,6 +207,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &101730822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101730819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f8b7219af4400fb176d2ac0bae5db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 0}
 --- !u!1 &333765677
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +231,7 @@ GameObject:
   - component: {fileID: 333765678}
   - component: {fileID: 333765680}
   - component: {fileID: 333765679}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -308,7 +322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 384813393}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletsContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +358,7 @@ GameObject:
   - component: {fileID: 497913941}
   - component: {fileID: 497913942}
   - component: {fileID: 497913945}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -485,12 +499,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8afe893a1c14a4c926cf22ea8ab940b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInputHandler: {fileID: 497913941}
+  _shootPoint: {fileID: 1862062641}
+  _playerMovement: {fileID: 497913942}
   _poolData:
     _bulletPrefab: {fileID: 8039435494109474416, guid: 5ca8e6a75fc23864c9432af6f32c89d4, type: 3}
     _initialPoolSize: 25
     _bulletsContainer: {fileID: 384813393}
-  _playerInputHandler: {fileID: 497913941}
-  _shootPoint: {fileID: 1862062641}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,7 +867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1862062641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

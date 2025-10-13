@@ -14,6 +14,9 @@ namespace Player.Movement
         [SerializeField] private GroundChecker _groundChecker;
         
         private Rigidbody2D _rigidbody;
+        private float _currentDirection = 1f;
+        
+        public float CurrentDirection => _currentDirection;
         
         private void OnEnable()
         {
@@ -35,6 +38,11 @@ namespace Player.Movement
             float targetVelocityX = direction * _moveSpeed;
             
             _rigidbody.velocity = new Vector2(targetVelocityX, _rigidbody.velocity.y);
+
+            if (direction != 0)
+            {
+                UpdatePlayerDirection(direction);
+            }
         }
 
         private void Jump()
@@ -43,6 +51,17 @@ namespace Player.Movement
                 
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
 
+        }
+
+        private void UpdatePlayerDirection(float direction)
+        {
+            if (direction != _currentDirection)
+            {
+                transform.localScale = new Vector3(transform.localScale.x * -1,
+                    transform.localScale.y, transform.localScale.z);
+                
+                _currentDirection = direction;
+            }
         }
     }
 }

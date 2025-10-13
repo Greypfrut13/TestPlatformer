@@ -43,9 +43,9 @@ namespace Player.Input
         private void HandleMovementInput()
         {
             float horizontalMoveInput = _moveActionReference.action.ReadValue<float>();
-            float targetVelocityX = horizontalMoveInput != 0 ? horizontalMoveInput : 0f;
+            float direction = horizontalMoveInput != 0 ? horizontalMoveInput : 0f;
             
-            OnMoveInput?.Invoke(targetVelocityX);
+            OnMoveInput?.Invoke(direction);
         }
 
         private void HandleJumpInput(InputAction.CallbackContext context)

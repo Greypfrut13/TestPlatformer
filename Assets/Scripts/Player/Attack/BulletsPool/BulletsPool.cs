@@ -47,12 +47,17 @@ namespace Player.Attack
         {
             for (int i = 0; i < _initialPoolSize; i++)
             {
-                Bullet newBullet = Object.Instantiate(_bulletPrefab, _bulletsContainer);
-                newBullet.Initialize(_shootPoint, this);
-                newBullet.gameObject.SetActive(false);
-                
-                _bulletsInPool.Enqueue(newBullet);
+                CreateBullet();
             }
+        }
+
+        private void CreateBullet()
+        {
+            Bullet newBullet = Object.Instantiate(_bulletPrefab, _bulletsContainer);
+            newBullet.Initialize(_shootPoint, this);
+            newBullet.gameObject.SetActive(false);
+                
+            _bulletsInPool.Enqueue(newBullet);
         }
     }
 }

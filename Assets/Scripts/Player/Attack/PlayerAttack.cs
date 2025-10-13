@@ -1,13 +1,16 @@
 ﻿using Player.Input;
+using Player.Movement;
 using UnityEngine;
 
 namespace Player.Attack
 {
     public class PlayerAttack : MonoBehaviour
     {
-        [SerializeField] private BulletsPoolData _poolData;
         [SerializeField] private PlayerInputHandler _playerInputHandler;
         [SerializeField] private Transform _shootPoint;
+        [SerializeField] private PlayerMovement _playerMovement;
+        
+        [SerializeField] private BulletsPoolData _poolData;
         
         private BulletsPool _bulletsPool;
 
@@ -27,6 +30,7 @@ namespace Player.Attack
         public void Shoot()
         {
             Bullet bullet = _bulletsPool.GetBullet();
+            bullet.BulletsMover.SetDirection(_playerMovement.CurrentDirection);
         }
     }
 }

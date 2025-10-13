@@ -20,6 +20,9 @@ namespace Player.Input
             _moveActionReference.action.Enable();
             _jumpActionReference.action.Enable();
             _attackActionReference.action.Enable();
+
+            _attackActionReference.action.started += HandleAttackInput;
+            _jumpActionReference.action.started += HandleJumpInput;
         }
 
         private void OnDisable()
@@ -27,26 +30,25 @@ namespace Player.Input
             _moveActionReference.action.Disable();
             _jumpActionReference.action.Disable();
             _jumpActionReference.action.Disable();
+            
+            _attackActionReference.action.started -= HandleAttackInput;
+            _jumpActionReference.action.started -= HandleJumpInput;
         }
         
         private void Update()
         {
             HandleMovementInput();
-            HandleJumpInput();
-            HandleAttackInput();
         }
         
         private void HandleMovementInput()
         {
             float horizontalMoveInput = _moveActionReference.action.ReadValue<float>();
-
-            if (horizontalMoveInput != 0)
-            {
-                OnMoveInput?.Invoke(horizontalMoveInput);
-            }
+            float targetVelocityX = horizontalMoveInput != 0 ? horizontalMoveInput : 0f;
+            
+            OnMoveInput?.Invoke(targetVelocityX);
         }
 
-        private void HandleJumpInput()
+        private void HandleJumpInput(InputAction.CallbackContext context)
         {
             if (_jumpActionReference.action.IsPressed())
             {
@@ -54,7 +56,7 @@ namespace Player.Input
             }
         }
         
-        private void HandleAttackInput()
+        private void HandleAttackInput(InputAction.CallbackContext context)
         {
             if (_attackActionReference.action.IsPressed())
             {

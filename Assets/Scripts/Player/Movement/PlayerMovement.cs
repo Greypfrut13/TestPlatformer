@@ -1,12 +1,16 @@
 ﻿using System;
 using Player.Input;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Player.Movement
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerMovement : MonoBehaviour
     {
+        public event UnityAction<bool> OnMovement;
+        public event UnityAction OnJump;
+        
         [SerializeField] [Min(0.0f)] private float _moveSpeed;
         [SerializeField] [Min(0.0f)] private float _jumpForce;
         
@@ -38,6 +42,7 @@ namespace Player.Movement
             float targetVelocityX = direction * _moveSpeed;
             
             _rigidbody.velocity = new Vector2(targetVelocityX, _rigidbody.velocity.y);
+            OnMovement?.Invoke(direction != 0f);
 
             if (direction != 0)
             {
@@ -50,7 +55,7 @@ namespace Player.Movement
             if (!_groundChecker.IsGrounded) return;
                 
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpForce);
-
+            OnJump?.Invoke();
         }
 
         private void UpdatePlayerDirection(float direction)

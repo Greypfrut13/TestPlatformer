@@ -1,11 +1,14 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Player.Movement
 {
     [RequireComponent(typeof(Collider2D))]
     public class GroundChecker : MonoBehaviour
     {
+        public event UnityAction<bool> OnGroundStateChanged;
+        
         [SerializeField] private LayerMask _groundLayer;
         
         private Collider2D _collider;
@@ -23,6 +26,7 @@ namespace Player.Movement
             if (_groundLayer == (_groundLayer | (1 << other.gameObject.layer)))
             {
                 IsGrounded = true;
+                OnGroundStateChanged?.Invoke(IsGrounded);
             }
         }
 
@@ -31,6 +35,7 @@ namespace Player.Movement
             if (_groundLayer == (_groundLayer | (1 << other.gameObject.layer)))
             {
                 IsGrounded = false;
+                OnGroundStateChanged?.Invoke(IsGrounded);
             }
         }
     }

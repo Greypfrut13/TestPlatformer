@@ -132,6 +132,8 @@ GameObject:
   m_Component:
   - component: {fileID: 101730820}
   - component: {fileID: 101730821}
+  - component: {fileID: 101730822}
+  - component: {fileID: 101730823}
   m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
@@ -206,6 +208,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &101730822
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101730819}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f8bfcbef6cf2bb049a352b813faf86fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &101730823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101730819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9781b7f49a8d46b8a99a69492868d0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 497913942}
+  _groundChecker: {fileID: 333765679}
+  _runParameter: IsRunning
+  _jumpParameter: Jumped
+  _groundedParameter: IsGrounded
 --- !u!1 &333765677
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +530,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 497913942}
   _poolData:
     _bulletPrefab: {fileID: 8039435494109474416, guid: 5ca8e6a75fc23864c9432af6f32c89d4, type: 3}
-    _initialPoolSize: 20
+    _initialPoolSize: 5
     _bulletsContainer: {fileID: 384813393}
 --- !u!1 &519420028
 GameObject:

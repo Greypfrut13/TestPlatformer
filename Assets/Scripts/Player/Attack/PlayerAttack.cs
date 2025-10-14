@@ -12,13 +12,13 @@ namespace Player.Attack
         
         [SerializeField] private BulletsPoolData _poolData;
         
-        private BulletsPool _bulletsPool;
+        private BulletsPool.BulletsPool _bulletsPool;
 
         private void OnEnable()
         {
             _playerInputHandler.OnAttackPressed += Shoot;
 
-            _bulletsPool = new BulletsPool(_poolData.BulletPrefab, _poolData.InitialPoolSize, _poolData.BulletsContainer, 
+            _bulletsPool = new BulletsPool.BulletsPool(_poolData.BulletPrefab, _poolData.InitialPoolSize, _poolData.BulletsContainer, 
                 _shootPoint);
         }
 
@@ -31,6 +31,7 @@ namespace Player.Attack
         {
             Bullet bullet = _bulletsPool.GetBullet();
             bullet.BulletsMover.SetDirection(_playerMovement.CurrentDirection);
+            bullet.StartReturnToPool();
         }
     }
 }

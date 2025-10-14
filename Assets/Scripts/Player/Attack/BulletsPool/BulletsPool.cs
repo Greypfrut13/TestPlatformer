@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player.Attack
+namespace Player.Attack.BulletsPool
 {
     public class BulletsPool
     {
@@ -11,6 +11,7 @@ namespace Player.Attack
         private Transform _shootPoint;
 
         private Queue<Bullet> _bulletsInPool = new Queue<Bullet>();
+        private List<Bullet> _allBullets = new List<Bullet>(); 
         
         public BulletsPool(Bullet bulletPrefab, int initialPoolSize, Transform bulletsContainer, Transform shootPoint)
         {
@@ -25,12 +26,17 @@ namespace Player.Attack
         public Bullet GetBullet()
         {
             Bullet bullet = _bulletsInPool.Count > 0 ? _bulletsInPool.Dequeue() : null;
-            
-            if (bullet != null)
+
+            if (bullet == null)
             {
-                bullet.gameObject.SetActive(true);
-                bullet.transform.SetParent(null);
+                bullet = CreateBullet();
+                _bulletsInPool.Dequeue();
+                ReturnAllActiveBullets();
             }
+            
+            bullet.gameObject.SetActive(true);
+            bullet.transform.SetParent(null);
+                
             
             return bullet;
         }
@@ -39,8 +45,7 @@ namespace Player.Attack
         {
             bullet.gameObject.SetActive(false);
             _bulletsInPool.Enqueue(bullet);
-            bullet.transform.SetParent(_bulletsContainer);
-            bullet.transform.position = _shootPoint.position;
+            ResetBulletState(bullet);
         }
 
         private void InitializePool()
@@ -51,13 +56,33 @@ namespace Player.Attack
             }
         }
 
-        private void CreateBullet()
+        private Bullet CreateBullet()
         {
             Bullet newBullet = Object.Instantiate(_bulletPrefab, _bulletsContainer);
             newBullet.Initialize(_shootPoint, this);
             newBullet.gameObject.SetActive(false);
                 
             _bulletsInPool.Enqueue(newBullet);
+            _allBullets.Add(newBullet);
+            
+            return newBullet;
+        }
+        
+        private void ResetBulletState(Bullet bullet)
+        {
+            bullet.transform.SetParent(_bulletsContainer);
+            bullet.transform.position = _shootPoint.position;
+        }
+
+        private void ReturnAllActiveBullets()
+        {
+            foreach (Bullet bullet in _allBullets)
+            {
+                if (bullet.gameObject.activeInHierarchy)
+                {
+                    ReturnBullet(bullet);
+                }
+            }
         }
     }
 }

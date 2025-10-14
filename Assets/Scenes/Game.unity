@@ -132,7 +132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 101730820}
   - component: {fileID: 101730821}
-  - component: {fileID: 101730822}
   m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
@@ -207,19 +206,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &101730822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 101730819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f8b7219af4400fb176d2ac0bae5db2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 0}
 --- !u!1 &333765677
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,7 +490,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 497913942}
   _poolData:
     _bulletPrefab: {fileID: 8039435494109474416, guid: 5ca8e6a75fc23864c9432af6f32c89d4, type: 3}
-    _initialPoolSize: 25
+    _initialPoolSize: 20
     _bulletsContainer: {fileID: 384813393}
 --- !u!1 &519420028
 GameObject:

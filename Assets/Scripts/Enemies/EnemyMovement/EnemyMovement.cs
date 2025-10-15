@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Enemies.EnemyMovement
+namespace Enemies.Movement
 {
     public class EnemyMovement
     {
@@ -8,6 +8,7 @@ namespace Enemies.EnemyMovement
         private LayerMask _groundLayer;
         private Transform _enemyTransform;
         private Rigidbody2D _rigidbody;
+        private SpriteRenderer _spriteRenderer;
         
         private float _wallCheckDistance;
         private float _groundCheckDistance;
@@ -18,7 +19,8 @@ namespace Enemies.EnemyMovement
 
         public EnemyMovement(float moveSpeed, LayerMask groundLayer, 
             Transform enemyTransform, float wallCheckDistance, 
-            float groundCheckDistance, float edgeCheckOffset, Rigidbody2D rigidbody)
+            float groundCheckDistance, float edgeCheckOffset, Rigidbody2D rigidbody,
+            SpriteRenderer spriteRenderer)
         {
             _moveSpeed = moveSpeed;
             _groundLayer = groundLayer;
@@ -27,6 +29,7 @@ namespace Enemies.EnemyMovement
             _groundCheckDistance = groundCheckDistance;
             _edgeCheckOffset = edgeCheckOffset;
             _rigidbody = rigidbody;
+            _spriteRenderer = spriteRenderer;
         }
 
         public void HandleMovement()
@@ -34,6 +37,7 @@ namespace Enemies.EnemyMovement
             if (ShouldTurnAround())
             {
                 _moveDirection *= -1;
+                HandleFlipBody(_moveDirection);
             }
             
             Move();
@@ -82,6 +86,12 @@ namespace Enemies.EnemyMovement
             Debug.DrawRay(checkPosition, Vector2.down * _groundCheckDistance, Color.green);
             
             return hit.collider != null;
+        }
+
+        private void HandleFlipBody(float direction)
+        {
+            bool needFlip = direction < 0 ? true : false;
+            _spriteRenderer.flipX = needFlip;
         }
     }
 }

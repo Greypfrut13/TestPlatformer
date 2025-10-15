@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Enemies.Movement;
 using UnityEngine;
 
 namespace Enemies.Core
@@ -9,14 +9,15 @@ namespace Enemies.Core
 
         [SerializeField] private Transform _bodyTransform;
         [SerializeField] private Rigidbody2D _bodyRigidbody;
+        [SerializeField] private SpriteRenderer _bodySprite;
         
-        private EnemyMovement.EnemyMovement _movement;
+        private EnemyMovement _movement;
 
         private void Awake()
         {
-            _movement = new EnemyMovement.EnemyMovement(_data.MoveSpeed, _data.GroundLayer, _bodyTransform,
+            _movement = new EnemyMovement(_data.MoveSpeed, _data.GroundLayer, _bodyTransform,
                 _data.WallCheckDistance, _data.GroundCheckDistance, _data.EdgeCheckOffset,
-                _bodyRigidbody);
+                _bodyRigidbody, _bodySprite);
         }
 
         private void Update()

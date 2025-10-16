@@ -1,5 +1,6 @@
 ﻿using Enemies.Core;
 using Enemies.Health;
+using Player.Attack;
 using Player.Health;
 using UnityEngine;
 
@@ -29,6 +30,10 @@ namespace Enemies.Collision
             {
                 Vector2 contactPoint = CalculateContactPoint(other);
                 HandleCollisionWithPlayer(player, contactPoint);
+            }
+            else if (other.TryGetComponent(out Bullet bullet))
+            {
+                _enemyHealth.Die(_enemyObject);
             }
         }
         

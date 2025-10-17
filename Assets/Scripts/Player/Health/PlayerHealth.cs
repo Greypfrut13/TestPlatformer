@@ -30,7 +30,7 @@ namespace Player.Health
             }
         }
 
-        private void Die()
+        public void Die()
         {
             OnDeath?.Invoke();
             

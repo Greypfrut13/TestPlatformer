@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -181,7 +181,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_4
+      name: Coin
       rect:
         serializedVersion: 2
         x: 17
@@ -2144,6 +2144,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Coin: -1025129925
       UI_0: 211340641
       UI_1: 1754541865
       UI_10: -718473425
@@ -2177,7 +2178,6 @@ TextureImporter:
       UI_37: 781941766
       UI_38: 1436329790
       UI_39: -1423151290
-      UI_4: -1025129925
       UI_40: -776647205
       UI_41: 1766840203
       UI_42: -1021686031

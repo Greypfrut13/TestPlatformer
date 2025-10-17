@@ -26,8 +26,15 @@ namespace Player.Health
 
             if (_currentHealth <= 0)
             {
-                Debug.Log("Death");
+                Die();
             }
+        }
+
+        private void Die()
+        {
+            OnDeath?.Invoke();
+            
+            Destroy(gameObject);
         }
     }
 }

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a3fc5421b674e72b104760bab06dd35, type: 3}
-  m_Name: EnemyData
+  m_Name: Snake
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 4
   _groundLayer:
     serializedVersion: 2
     m_Bits: 256
